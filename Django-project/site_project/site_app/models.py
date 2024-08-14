@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+UserModel = get_user_model()
 
 
 # Create your models here.
@@ -7,7 +10,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Название")
 
     class Meta:
-        verbose_name_plural = 'Категория'
+        verbose_name_plural = 'Категории'
         ordering = ["pk"]
 
     def __str__(self):
@@ -17,26 +20,32 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     category = models.ManyToManyField(
         to=Category,
         related_name="products",
         verbose_name="Категории"
     )
 
+    author = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        verbose_name="Автор"
+    )
+
     class Meta:
-        verbose_name_plural = 'Товары'
+        verbose_name_plural = 'Статьи'
         ordering = ["pk"]
 
-    class Condition(models.TextChoices):
-        NEW = 'new', 'Новый',
-        USED = 'used', 'Б/У'
+    class Сomplexity(models.TextChoices):
+        EASY = 'easy', 'Легкий',
+        MEDIUM = 'medium', 'Средний',
+        HARD = 'hard', 'Сложный',
 
-    condition = models.CharField(
+    complexity = models.CharField(
         max_length=10,
-        choices=Condition.choices,
-        default=Condition.NEW,
-        verbose_name="Состояние"
+        choices=Сomplexity.choices,
+        default=Сomplexity.EASY,
+        verbose_name="Сложность"
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

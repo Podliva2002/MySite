@@ -12,7 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name', 'price', 'category_list', 'description_short'
+    list_display = 'pk', 'name', 'author', 'category_list', 'description_short'
     list_display_links = "pk", "name"
 
     @staticmethod
