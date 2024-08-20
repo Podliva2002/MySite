@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}
+    Base Title
+  {% endblock %}</title>
+
+  <link
+        href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous"
+  >
+</head>
+<body>
+<nav class="nav justify-content-center">
+  <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Главная</a>
+  <a class="nav-link active" aria-current="page" href="{% url 'site_app:index' %}">Обучение</a>
+  <a class="nav-link" href="{% url 'admin:index' %}">Админка</a>
+</nav>
+{% block body %}
+  Base Body
+{% endblock %}
+
+<footer>
+  {% block footer %}
+    <div>
+      &copy; 2024
+    </div>
+  {% endblock %}
+</footer>
+</body>
+</html>

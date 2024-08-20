@@ -1,0 +1,16 @@
+{% extends 'site_app/base.html' %}
+
+{% block title %}
+ Статьи
+{% endblock %}
+
+{% block body %}
+<h1>Статьи</h1>
+
+<ul>
+ {% for article in articles %}
+     <li><a href="{% url 'site_app:article-detail' pk=article.pk %}"
+     >{{ article.name }}</a></li>
+ {% endfor %}
+</ul>
+{% endblock %}

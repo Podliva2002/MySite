@@ -1,0 +1,16 @@
+{% extends 'site_app/index.html' %}
+
+{% block tittle %}
+ Статья: {{ article_detail.name }}
+{% endblock %}
+
+{% block body %}
+<h1>Статья: {{ article_detail.name }}</h1>
+
+<p><strong>Сложность:</strong> {{ article_detail.complexity }}</p>
+<p><strong>Описание:</strong> {{ article_detail.description }}</p>
+<p><strong>Автор:</strong> {{ article_detail.author }}</p>
+<div>
+  <a href="{% url 'site_app:ListArticle' %}">Список статей</a>
+</div>
+{% endblock %}

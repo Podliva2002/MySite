@@ -1,0 +1,19 @@
+{% extends 'site_app/base.html' %}
+
+{% block title %}
+ Статьи
+{% endblock %}
+
+{% block body %}
+<h1>База знаний</h1>
+
+<ul>
+    <li>
+          <a href="{% url 'site_app:ListCategory' %}">Категории</a>
+    </li>
+    <li>
+          <a href="{% url 'site_app:ListArticle' %}">Статьи</a>
+    </li>
+</ul>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "site_app/base.html" %}
+
+{% block title %}
+  Categories list
+{% endblock %}
+
+{% block body %}
+  <h1>Categories</h1>
+
+<ul>
+    {% for category in categories %}
+          <li><a href="{% url 'site_app:category-detail' pk=category.pk %}"
+          >{{ category.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
