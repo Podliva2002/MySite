@@ -1,9 +1,14 @@
 {% extends 'site_app/base.html' %}
 
 {% block title %}
-  {{ category.name }}
+  {{ category_detail.name }}
 {% endblock %}
 
 {% block body %}
-  <h1>Категория {{ category.name }}</h1>
+  <h1>Категория {{ category_detail.name }}</h1>
+
+<div>
+    <a href="{% url 'site_app:category-delete' pk=category_detail.pk %}"
+    >Delete category</a>
+</div>
 {% endblock %}

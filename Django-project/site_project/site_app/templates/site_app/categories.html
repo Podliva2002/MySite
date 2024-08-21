@@ -13,4 +13,8 @@
           >{{ category.name }}</a></li>
     {% endfor %}
 </ul>
+
+<div>
+    <a href="{% url 'site_app:category-add' %}">Добавить новую категорию</a>
+</div>
 {% endblock %}
