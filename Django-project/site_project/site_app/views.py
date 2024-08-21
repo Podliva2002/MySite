@@ -42,6 +42,13 @@ class CategoryDeleteView(DeleteView):
     context_object_name = "category_delete"
 
 
+class CategoryEditView(UpdateView):
+    model = Category
+    template_name = "site_app/categories_edit.html"
+    form_class = CategoryForm
+    context_object_name = "category_edit"
+
+
 class ArticleList(ListView):
     model = Product
     template_name = "site_app/article.html"

@@ -1,0 +1,18 @@
+{% extends "site_app/base.html" %}
+
+{% block title %}
+    Обновление информации по категории {{ category_edit.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Обновление информации по категории {{ category_edit.name }}</h1>
+
+<form method="post">
+    <div class="container mx-4">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Обновить</button>
+    </div>
+</form>
+
+{% endblock %}

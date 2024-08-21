@@ -9,6 +9,10 @@
 
 <div>
     <a href="{% url 'site_app:category-delete' pk=category_detail.pk %}"
-    >Delete category</a>
+    >Удалить категорию</a>
+</div>
+<div>
+    <a href="{% url 'site_app:category-edit' pk=category_detail.pk %}"
+    >Обновить категорию</a>
 </div>
 {% endblock %}

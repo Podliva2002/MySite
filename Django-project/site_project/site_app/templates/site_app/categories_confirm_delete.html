@@ -1,0 +1,20 @@
+{% extends "site_app/base.html" %}
+
+{% block title %}
+    Удаление категории
+{% endblock %}
+
+{% block body %}
+    <h1>Удаление категории {{ category_delete.name }}</h1>
+
+<p>
+    Вы уверены, что хотите удалить эту категорию?
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Delete">
+</form>
+
+{% endblock %}

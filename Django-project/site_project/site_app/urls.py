@@ -6,6 +6,7 @@ from .views import (
     ArticleDetailView,
     CategoryAddView,
     CategoryDeleteView,
+    CategoryEditView,
 )
 
 from django.urls import path
@@ -18,6 +19,7 @@ urlpatterns = [
     path("categories/add/", CategoryAddView.as_view(), name="category-add"),
     path("categories/<int:pk>/", CategoryDetailView.as_view(), name="category-detail"),
     path("categories/<int:pk>/delete/", CategoryDeleteView.as_view(), name="category-delete"),
+    path("categories/<int:pk>/edit/", CategoryEditView.as_view(), name="category-edit"),
     path("articles/", ArticleList.as_view(), name="ListArticle"),
     path("articles/<int:pk>/", ArticleDetailView.as_view(), name="article-detail"),
 ]

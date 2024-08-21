@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{% block title %}
-    Base Title
-  {% endblock %}</title>
+  <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Base Title{% endblock %}</title>
 
   <link
         href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -13,21 +14,25 @@
   >
 </head>
 <body>
-<nav class="nav justify-content-center">
-  <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Главная</a>
-  <a class="nav-link active" aria-current="page" href="{% url 'site_app:index' %}">Обучение</a>
-  <a class="nav-link" href="{% url 'admin:index' %}">Админка</a>
-</nav>
+<div class="container-fluid my-3 bg-white border-bottom shadow-sm">
+  <nav class="nav justify-content-center">
+    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Главная</a>
+    <a class="nav-link" href="{% url 'site_app:index' %}">Обучение</a>
+    <a class="nav-link" href="{% url 'admin:index' %}">Панель администратора</a>
+  </nav>
+</div>
+
 {% block body %}
-  Base Body
 {% endblock %}
 
 <footer>
-  {% block footer %}
-    <div>
-      &copy; 2024
-    </div>
-  {% endblock %}
+    {% block footer %}
+      <div class="text-center">
+        &copy; 2024
+      </div>
+    {% endblock %}
 </footer>
+
+<script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
