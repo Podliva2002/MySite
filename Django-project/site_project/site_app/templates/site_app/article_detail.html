@@ -11,6 +11,15 @@
 <p><strong>Описание:</strong> {{ article_detail.description }}</p>
 <p><strong>Автор:</strong> {{ article_detail.author }}</p>
 <div>
+    Категории:
+    <ul>
+        {% for category in article_detail.category.all %}
+         <li><a href="{% url 'site_app:category-detail' pk=category.pk %}"
+         >{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
   <a href="{% url 'site_app:ListArticle' %}">Список статей</a>
 </div>
 {% endblock %}
