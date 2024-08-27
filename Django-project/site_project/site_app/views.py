@@ -18,9 +18,14 @@ class IndexView(TemplateView):
 
 
 class CategoryView(ListView):
-    model = Category
+    # model = Category
     template_name = "site_app/categories.html"
     context_object_name = "categories"
+    queryset = (
+        Category.objects
+        .prefetch_related('products')
+        .all()
+    )
 
 
 class CategoryDetailView(DetailView):
@@ -50,12 +55,19 @@ class CategoryEditView(UpdateView):
 
 
 class ArticleList(ListView):
-    model = Product
+    # model = Product
     template_name = "site_app/article.html"
     context_object_name = "articles"
+    queryset = (
+        Product.objects
+        .select_related('author')
+        .prefetch_related('category')
+        .all
+    )
 
 
 class ArticleDetailView(DetailView):
     model = Product
     template_name = "site_app/article_detail.html"
     context_object_name = "article_detail"
+

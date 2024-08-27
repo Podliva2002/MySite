@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "*",
+]
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    "0.0.0.0",
+    # ...
 ]
 
 
@@ -124,3 +132,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TESTING = "test" in sys.argv
+
+if not TESTING:
+    # INSTALLED_APPS = [
+    #     *INSTALLED_APPS,
+    #     "debug_toolbar",
+    # ]
+    INSTALLED_APPS.append(
+        "debug_toolbar",
+    )
+    # MIDDLEWARE = [
+    #     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    #     *MIDDLEWARE,
+    # ]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")

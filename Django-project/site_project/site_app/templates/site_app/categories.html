@@ -11,6 +11,12 @@
     {% for category in categories %}
           <li><a href="{% url 'site_app:category-detail' pk=category.pk %}"
           >{{ category.name }}</a></li>
+    Связаные статьи:
+     <ul>
+         {% for article in category.products.all %}
+         <li>{{ article.name }}</li>
+         {% endfor %}
+     </ul>
     {% endfor %}
 </ul>
 
