@@ -1,25 +1,30 @@
 {% extends 'site_app/index.html' %}
 
-{% block tittle %}
+{% block title %}
  Статья: {{ article_detail.name }}
 {% endblock %}
 
 {% block body %}
-<h1>Статья: {{ article_detail.name }}</h1>
+<div class="container mt-4">
+    <h1 class="display-4">Статья: {{ article_detail.name }}</h1>
 
-<p><strong>Сложность:</strong> {{ article_detail.complexity }}</p>
-<p><strong>Описание:</strong> {{ article_detail.description }}</p>
-<p><strong>Автор:</strong> {{ article_detail.author }}</p>
-<div>
-    Категории:
-    <ul>
-        {% for category in article_detail.category.all %}
-         <li><a href="{% url 'site_app:category-detail' pk=category.pk %}"
-         >{{ category.name }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-<div>
-  <a href="{% url 'site_app:ListArticle' %}">Список статей</a>
+    <p><strong>Сложность:</strong> {{ article_detail.complexity }}</p>
+    <p><strong>Описание:</strong> {{ article_detail.description }}</p>
+    <p><strong>Автор:</strong> {{ article_detail.author }}</p>
+
+    <div class="mt-4">
+        <strong>Категории:</strong>
+        <ul class="list-unstyled">
+            {% for category in article_detail.category.all %}
+                <li>
+                    <a href="{% url 'site_app:category-detail' pk=category.pk %}" class="badge bg-info text-dark">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'site_app:ListArticle' %}" class="btn btn-primary">Список статей</a>
+    </div>
 </div>
 {% endblock %}

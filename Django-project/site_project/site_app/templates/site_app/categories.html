@@ -7,18 +7,21 @@
 {% block body %}
   <h1>Categories</h1>
 
-<ul>
-    {% for category in categories %}
-          <li><a href="{% url 'site_app:category-detail' pk=category.pk %}"
-          >{{ category.name }}</a></li>
-    Связаные статьи:
-     <ul>
-         {% for article in category.products.all %}
-         <li>{{ article.name }}</li>
-         {% endfor %}
-     </ul>
-    {% endfor %}
-</ul>
+<div class="container mt-4">
+    <ul class="list-group">
+        {% for category in categories %}
+            <li class="list-group-item">
+                <a href="{% url 'site_app:category-detail' pk=category.pk %}" class="h5">{{ category.name }}</a>
+                <p class="text-muted">Связанные статьи:</p>
+                <ul class="list-unstyled mt-2">
+                    {% for article in category.products.all %}
+                        <li class="badge bg-primary me-1">{{ article.name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 <div>
     <a href="{% url 'site_app:category-add' %}">Добавить новую категорию</a>
