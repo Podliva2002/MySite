@@ -1,7 +1,7 @@
 import textwrap
 
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, Contact
 
 
 class CategoryInline(admin.TabularInline):
@@ -36,3 +36,10 @@ class ProductAdmin(admin.ModelAdmin):
     @staticmethod
     def category_list(obj: Product) -> str:
         return ", ".join([c.name for c in obj.category.all()])
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = 'pk', 'name', 'email'
+    list_display_links = "pk", "name", 'email'
+

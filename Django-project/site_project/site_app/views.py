@@ -9,8 +9,8 @@ from django.views.generic import (
 )
 
 from django.urls import reverse, reverse_lazy
-from site_app.forms import CategoryForm, ProductForm
-from site_app.models import Product, Category
+from site_app.forms import CategoryForm, ProductForm, ContactForm
+from site_app.models import Product, Category, Contact
 
 
 class IndexView(TemplateView):
@@ -70,4 +70,10 @@ class ArticleDetailView(DetailView):
     model = Product
     template_name = "site_app/article_detail.html"
     context_object_name = "article_detail"
+
+
+class ContactFormAdd(CreateView):
+    model = Contact
+    template_name = "site_app/contact_form.html"
+    form_class = ContactForm
 
