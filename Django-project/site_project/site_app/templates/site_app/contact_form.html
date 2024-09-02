@@ -1,0 +1,20 @@
+{% extends "site_app/base.html" %}
+
+{% block title %}
+  Оставить заявку
+{% endblock %}
+
+{% block body %}
+<div class="container mx-2">
+ <h1>Создать заявку</h1>
+</div>
+
+<form method="post">
+    <div class="container mx-4">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+</form>
+
+{% endblock %}

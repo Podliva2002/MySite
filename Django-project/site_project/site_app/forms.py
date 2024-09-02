@@ -1,5 +1,5 @@
 from django import forms
-from site_app.models import Category, Product
+from site_app.models import Category, Product, Contact
 
 
 class CategoryForm(forms.ModelForm):
@@ -21,4 +21,15 @@ class ProductForm(forms.ModelForm):
             'category': 'Категории',
             'author': 'Автор',
             'complexity': 'Сложность освоения',
+        }
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'message']
+        labels = {
+            'name': 'Имя',
+            'email': 'E-mail',
+            'message': 'Сообщение',
         }
