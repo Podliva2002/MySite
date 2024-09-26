@@ -10,6 +10,7 @@ from .views import (
     ContactFormAdd,
 )
 
+
 from django.urls import path
 
 app_name = 'site_app'

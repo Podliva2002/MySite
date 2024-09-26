@@ -59,6 +59,10 @@ class Product(models.Model):
         return self.name
 
 
+def get_absolute_url():
+    return reverse('site_app:index')
+
+
 class Contact(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -68,10 +72,8 @@ class Contact(models.Model):
         verbose_name = "Заявки из формы связи"
         ordering = ["pk"]
 
-    def get_absolute_url(self):
-        return reverse('site_app:index')
-
     def __str__(self):
         return f"Заявка от {self.name}-{self.email}"
+
 
 
