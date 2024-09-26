@@ -43,3 +43,5 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = 'pk', 'name', 'email'
     list_display_links = "pk", "name", 'email'
 
+
+

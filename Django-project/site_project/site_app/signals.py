@@ -10,3 +10,4 @@ def send_contact_notification(instance: Contact, created: bool, **kwargs):
         print("Just updated contact:", instance)
     result = send_contact_email.delay(contact_id=instance.pk)
     print(f"Task sent: {result}")
+

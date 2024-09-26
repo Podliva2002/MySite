@@ -13,12 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import sys
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -51,6 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "site_app.apps.SiteAppConfig",
     "django_celery_results",
+    "demo_api.apps.DemoApiConfig",
+    "rest_framework",
+    'django_filters',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +139,6 @@ EMAIL_HOST_USER = "Pod.liv.a@yandex.ru"
 EMAIL_HOST_PASSWORD = "a4s5d6f3g9"
 EMAIL_PORT = 587
 
-
 # ##### CELERY
 CELERY_TIMEZONE = "Asia/Yekaterinburg"
 CELERY_TASK_TRACK_STARTED = True
@@ -147,7 +146,6 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_RESULT_PERSISTENT = True
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -185,3 +183,16 @@ if not TESTING:
     #     *MIDDLEWARE,
     # ]
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 2,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissions',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework.authentication.BasicAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.TokenAuthentication',
+    ],
+}
