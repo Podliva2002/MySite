@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name="index"),
     path("site/", include("site_app.urls")),
+    path('frontend/', include("frontend.urls")),
     path('api/demo/', include("demo_api.urls")),
     path('api/site/', include("site_app.api_urls")),
 ]
