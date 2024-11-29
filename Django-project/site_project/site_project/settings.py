@@ -51,12 +51,13 @@ INSTALLED_APPS = [
     "rest_framework",
     'django_filters',
     'rest_framework.authtoken',
-    'frontend.apps.FrontendConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -187,15 +188,17 @@ if not TESTING:
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 2,
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.DjangoModelPermissions',
-    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-            'rest_framework.authentication.BasicAuthentication',
-            'rest_framework.authentication.SessionAuthentication',
-            'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticated',
+    ]
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
