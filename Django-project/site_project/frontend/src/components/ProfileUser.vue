@@ -2,9 +2,9 @@
     <div id="app">
 
       <div>
-        <h1>Навигация</h1>
+        <h1 v-if="profile.isLoggedIn">Навигация</h1>
           <nav class="navbar">
-            <router-link to='/'>Мои статьи</router-link>
+            <router-link v-if="profile.isLoggedIn" to='/'>Мои статьи</router-link>
             <router-link to='/login'>{{ profile.isLoggedIn ? 'Выйти' : 'Войти' }}</router-link>
           </nav>
           <router-view />

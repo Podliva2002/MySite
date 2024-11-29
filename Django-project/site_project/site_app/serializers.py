@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from site_app.models import Category, Product
+
 UserModel = get_user_model()
 
 class CategoryMinimalSerializer(serializers.Serializer):

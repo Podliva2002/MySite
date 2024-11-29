@@ -1,10 +1,10 @@
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+
+from . import api_views
 from .api_views import (
     CategoryTopListAPIView,
-    CategoryDetailAPIView, ProductCreatorViewSet, UserViewSet,
-)
-from rest_framework.routers import DefaultRouter
-from django.urls import path, include
-from . import api_views
+    CategoryDetailAPIView, ProductCreatorViewSet, )
 
 app_name = 'site_app_api'
 
@@ -27,7 +27,6 @@ router.register(
     basename="filter-product",
 )
 
-
 urlpatterns = [
     path(
         "top-categories/",
@@ -39,6 +38,6 @@ urlpatterns = [
         CategoryDetailAPIView.as_view(),
         name="min-category-details"
     ),
-    path('creatorarticles/<int:user_id>/', ProductCreatorViewSet.as_view({'get': 'list'}), name='product-list'),
+    path('creatorarticles/<int:user_id>/', ProductCreatorViewSet.as_view({'get': 'list'}), name='articles-list'),
     *router.urls,
 ]

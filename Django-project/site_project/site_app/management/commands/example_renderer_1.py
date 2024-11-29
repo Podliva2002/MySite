@@ -1,5 +1,4 @@
 from django.core.management import BaseCommand
-from rest_framework.renderers import JSONRenderer
 
 from site_app.models import Product
 from site_app.serializers import ProductSerializer

@@ -1,5 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from site_app.models import Contact
 from site_app.tasks import send_contact_email
 

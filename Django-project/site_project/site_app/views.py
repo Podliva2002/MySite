@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
     TemplateView,
     DetailView,
@@ -8,8 +8,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from django.urls import reverse, reverse_lazy
-from site_app.forms import CategoryForm, ProductForm, ContactForm
+from site_app.forms import CategoryForm, ContactForm
 from site_app.models import Product, Category, Contact
 
 

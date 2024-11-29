@@ -1,3 +1,5 @@
+from django.urls import path
+
 from .views import (
     IndexView,
     CategoryView,
@@ -9,9 +11,6 @@ from .views import (
     CategoryEditView,
     ContactFormAdd,
 )
-
-
-from django.urls import path
 
 app_name = 'site_app'
 
