@@ -1,14 +1,16 @@
+from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import viewsets, mixins, pagination
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Category, Product
 from .serializers import CategoryMinimalSerializer, CategoryDetailSerializer, ProductSerializer, CategorySerializer, \
-    ProductSerializerCreate
+    ProductSerializerCreate, UserSerializer
 
 
 class CategoryTopListAPIView(ListAPIView):
@@ -29,6 +31,31 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ProductCreatorViewSet(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Product.objects.filter(author=user_id)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            # Добавьте другие поля, которые хотите вернуть
+        })
+
 
 
 class TimezonePagination(pagination.PageNumberPagination):
@@ -70,5 +97,7 @@ class FilteringProductViewSet(
     #     product = self.get_object()
     #     result = product.price > 100
     #     return Response({'status': result})
+
+
 
 
